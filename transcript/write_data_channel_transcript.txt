@@ -1,0 +1,138 @@
+# Compile of axi4_lite_Defs.sv was successful.
+# Compile of axi4_lite_if.sv was successful.
+# Compile of axi4_lite_master.sv was successful.
+# Compile of axi4_lite_slave.sv was successful.
+# Compile of write_data_tb.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.write_data_tb
+# vsim -gui work.write_data_tb 
+# Start time: 17:32:51 on Mar 18,2020
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.axi4_lite_Defs(fast)
+# Loading work.axi4_lite_if_sv_unit(fast)
+# Loading work.write_data_tb_sv_unit(fast)
+# Loading work.write_data_tb(fast)
+# Loading work.axi4_lite_master_sv_unit(fast)
+# Loading work.axi4_lite_master(fast)
+# Loading work.axi4_lite_slave_sv_unit(fast)
+# Loading work.axi4_lite_slave(fast)
+run -all
+# WRITE DATA CHANNEL
+# 
+# Write followed by read to the same location
+# 
+#                    0 Time | ARESETN 0
+# 			      Writing xxxxxxxx to   Address xxxxxxxx | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WVALID_RESET: ASSERTION PASS => When ARESETN goes low WVALID becomes low
+#    Time: 5 ns Started: 5 ns  Scope: write_data_tb.WVALID_RESET_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 127
+# ** Info: WREADY_RESET: ASSERTION PASS => When ARESETN goes low WREADY becomes low
+#    Time: 5 ns Started: 5 ns  Scope: write_data_tb.WREADY_RESET_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 137
+#                    5 Time | ARESETN 1
+# 			      Writing xxxxxxxx to   Address xxxxxxxx | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 15 ns Started: 15 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 15 ns Started: 15 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   15 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 1 | AWREADY 0 | WVALID 1 | WREADY 0 | BVALID 0 | BREADY 1 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WDATA_X: ASSERTION PASS => WDATA does not have X when WVALID is high
+#    Time: 25 ns Started: 25 ns  Scope: write_data_tb.WDATA_X_p_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 117
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 25 ns Started: 25 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 25 ns Started: 25 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   25 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 1 | AWREADY 1 | WVALID 1 | WREADY 1 | BVALID 0 | BREADY 1 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WRITE_DATA: ASSERTION FAIL => Write Data has not been received successfully by the slave
+#    Time: 35 ns Started: 35 ns  Scope: write_data_tb.WRITE_DATA_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 108
+# ** Info: WREADY_STABLE: ASSERTION PASS => When RREADY is asserted, then it remains asserted until RVALID is high
+#    Time: 35 ns Started: 35 ns  Scope: write_data_tb.WREADY_STABLE_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 159
+# ** Info: WVALID_STABLE: ASSERTION PASS => When WVALID is asserted, then it remains asserted until WREADY is high
+#    Time: 35 ns Started: 25 ns  Scope: write_data_tb.WVALID_STABLE_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 148
+# ** Info: WDATA_X: ASSERTION PASS => WDATA does not have X when WVALID is high
+#    Time: 35 ns Started: 35 ns  Scope: write_data_tb.WDATA_X_p_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 117
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 35 ns Started: 35 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 35 ns Started: 35 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   35 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 1 | BREADY 1 | Data in memory 00abcdef
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WDATA_STABLE: ASSERTION PASS => When WVALID is asserted, WDATA remains stable until WVALID and WREADY become low
+#    Time: 45 ns Started: 25 ns  Scope: write_data_tb.WDATA_STABLE_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 97
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 45 ns Started: 45 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 45 ns Started: 45 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   45 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 55 ns Started: 55 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 55 ns Started: 55 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 65 ns Started: 65 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 65 ns Started: 65 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 75 ns Started: 75 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 75 ns Started: 75 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   75 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading xxxxxxxx from Address 00000579 | ARVALID 1 | ARREADY 0 | RVALID 0 | RREADY 1
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 85 ns Started: 85 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 85 ns Started: 85 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   85 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading xxxxxxxx from Address 00000579 | ARVALID 1 | ARREADY 1 | RVALID 0 | RREADY 1
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 95 ns Started: 95 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 95 ns Started: 95 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                   95 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading 00abcdef from Address 00000579 | ARVALID 0 | ARREADY 0 | RVALID 1 | RREADY 1
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 105 ns Started: 105 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 105 ns Started: 105 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                  105 Time | ARESETN 1
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading 00abcdef from Address 00000579 | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WREADY_X: ASSERTION PASS => WREADY does not have X when ARESETN is high
+#    Time: 115 ns Started: 115 ns  Scope: write_data_tb.WREADY_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 179
+# ** Info: WVALID_X: ASSERTION PASS => WVALID deos not have X when ARESETN is high
+#    Time: 115 ns Started: 115 ns  Scope: write_data_tb.WVALID_X_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 169
+#                  115 Time | ARESETN 0
+# 			      Writing 00abcdef to   Address 00000579 | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 00abcdef
+# 			      Reading 00abcdef from Address 00000579 | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: WREADY_RESET: ASSERTION PASS => When ARESETN goes low WREADY becomes low
+#    Time: 125 ns Started: 125 ns  Scope: write_data_tb.WREADY_RESET_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 137
+# ** Info: WVALID_RESET: ASSERTION PASS => When ARESETN goes low WVALID becomes low
+#    Time: 125 ns Started: 125 ns  Scope: write_data_tb.WVALID_RESET_a File: N:/Desktop/AXI4_LITE/write_data_tb.sv Line: 127
+#                  135 Time
+# 			      FINAL RESULT => ADDRESS: 00000579 | WRITE DATA: 00abcdef | READ DATA: 00abcdef | DATA MATCH
+# 
+# ** Note: $stop    : N:/Desktop/AXI4_LITE/write_data_tb.sv(85)
+#    Time: 135 ns  Iteration: 1  Instance: /write_data_tb
+# Break at N:/Desktop/AXI4_LITE/write_data_tb.sv line 85

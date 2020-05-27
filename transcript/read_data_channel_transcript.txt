@@ -1,0 +1,138 @@
+# Compile of axi4_lite_Defs.sv was successful.
+# Compile of axi4_lite_if.sv was successful.
+# Compile of axi4_lite_master.sv was successful.
+# Compile of axi4_lite_slave.sv was successful.
+# Compile of read_data_tb.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.read_data_tb
+# End time: 17:23:37 on Mar 18,2020, Elapsed time: 0:02:34
+# Errors: 855, Warnings: 0
+# vsim -gui work.read_data_tb 
+# Start time: 17:23:37 on Mar 18,2020
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.axi4_lite_Defs(fast)
+# Loading work.axi4_lite_if_sv_unit(fast)
+# Loading work.read_data_tb_sv_unit(fast)
+# Loading work.read_data_tb(fast)
+# Loading work.axi4_lite_master_sv_unit(fast)
+# Loading work.axi4_lite_master(fast)
+# Loading work.axi4_lite_slave_sv_unit(fast)
+# Loading work.axi4_lite_slave(fast)
+run -all
+# READ DATA CHANNEL
+# 
+# Write followed by read to the same location
+# 
+#                    0 Time | ARESETN 0
+# 			      Writing xxxxxxxx to   Address xxxxxxxx | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RVALID_RESET: ASSERTION PASS => When ARESETN goes low RVALID becomes low
+#    Time: 5 ns Started: 5 ns  Scope: read_data_tb.RVALID_RESET_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 116
+# ** Info: RREADY_RESET: ASSERTION PASS => When ARESETN goes low RREADY becomes low
+#    Time: 5 ns Started: 5 ns  Scope: read_data_tb.RREADY_RESET_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 126
+#                    5 Time | ARESETN 1
+# 			      Writing xxxxxxxx to   Address xxxxxxxx | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 15 ns Started: 15 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 15 ns Started: 15 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   15 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 1 | AWREADY 0 | WVALID 1 | WREADY 0 | BVALID 0 | BREADY 1 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 25 ns Started: 25 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 25 ns Started: 25 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   25 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 1 | AWREADY 1 | WVALID 1 | WREADY 1 | BVALID 0 | BREADY 1 | Data in memory xxxxxxxx
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 35 ns Started: 35 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 35 ns Started: 35 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   35 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 1 | BREADY 1 | Data in memory 87654321
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 45 ns Started: 45 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 45 ns Started: 45 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   45 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading xxxxxxxx from Address xxxxxxxx | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 55 ns Started: 55 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 55 ns Started: 55 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 65 ns Started: 65 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 65 ns Started: 65 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 75 ns Started: 75 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 75 ns Started: 75 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   75 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading xxxxxxxx from Address 00000def | ARVALID 1 | ARREADY 0 | RVALID 0 | RREADY 1
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 85 ns Started: 85 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 85 ns Started: 85 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   85 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading xxxxxxxx from Address 00000def | ARVALID 1 | ARREADY 1 | RVALID 0 | RREADY 1
+# 
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 95 ns Started: 95 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 95 ns Started: 95 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                   95 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading 87654321 from Address 00000def | ARVALID 0 | ARREADY 0 | RVALID 1 | RREADY 1
+# 
+# ** Info: READ_DATA: ASSERTION PASS => Read Data has been read successfully by the master
+#    Time: 105 ns Started: 105 ns  Scope: read_data_tb.READ_DATA_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 96
+# ** Info: RDATA_X: ASSERTION PASS => RDATA does not have X when RVALID is high
+#    Time: 105 ns Started: 105 ns  Scope: read_data_tb.RDATA_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 106
+# ** Info: RVALID_STABLE: ASSERTION PASS => When RVALID is asserted, then it remains asserted until RREADY is high
+#    Time: 105 ns Started: 105 ns  Scope: read_data_tb.RVALID_STABLE_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 136
+# ** Info: RREADY_STABLE: ASSERTION PASS => When RREADY is asserted, then it remains asserted until RVALID is high
+#    Time: 105 ns Started: 85 ns  Scope: read_data_tb.RREADY_STABLE_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 146
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 105 ns Started: 105 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 105 ns Started: 105 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                  105 Time | ARESETN 1
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading 87654321 from Address 00000def | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RDATA_STABLE: ASSERTION PASS => When RVALID is asserted, RDATA remains stable until RVALID and RREADY become low
+#    Time: 115 ns Started: 105 ns  Scope: read_data_tb.RDATA_STABLE_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 175
+# ** Info: RREADY_X: ASSERTION PASS => RREADY does not have X when ARESETN is high
+#    Time: 115 ns Started: 115 ns  Scope: read_data_tb.RREADY_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 166
+# ** Info: RVALID_X: ASSERTION PASS => RVALID does not have X when ARESETN is high
+#    Time: 115 ns Started: 115 ns  Scope: read_data_tb.RVALID_X_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 156
+#                  115 Time | ARESETN 0
+# 			      Writing 87654321 to   Address 00000def | AWVALID 0 | AWREADY 0 | WVALID 0 | WREADY 0 | BVALID 0 | BREADY 0 | Data in memory 87654321
+# 			      Reading 87654321 from Address 00000def | ARVALID 0 | ARREADY 0 | RVALID 0 | RREADY 0
+# 
+# ** Info: RREADY_RESET: ASSERTION PASS => When ARESETN goes low RREADY becomes low
+#    Time: 125 ns Started: 125 ns  Scope: read_data_tb.RREADY_RESET_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 126
+# ** Info: RVALID_RESET: ASSERTION PASS => When ARESETN goes low RVALID becomes low
+#    Time: 125 ns Started: 125 ns  Scope: read_data_tb.RVALID_RESET_a File: N:/Desktop/AXI4_LITE/read_data_tb.sv Line: 116
+#                  135 Time
+# 			      FINAL RESULT => ADDRESS: 00000def | WRITE DATA: 87654321 | READ DATA: 87654321 | DATA MATCH
+# 
+# ** Note: $stop    : N:/Desktop/AXI4_LITE/read_data_tb.sv(84)
+#    Time: 135 ns  Iteration: 1  Instance: /read_data_tb
+# Break at N:/Desktop/AXI4_LITE/read_data_tb.sv line 84
