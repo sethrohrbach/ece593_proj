@@ -58,9 +58,12 @@ class axi4_checker;
   int k = 0;
   for (k = 0; k < 4096; k++) begin
     @(posedge clk);
+    fork
     save_val();
     check_val();
-
-
+    join
+  end
 
   endtask: check_val
+
+endclass: axi4_checker
