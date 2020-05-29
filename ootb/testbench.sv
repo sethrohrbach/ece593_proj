@@ -4,8 +4,8 @@ class testbench;
 
 	virtual axi4_lite_bfm bfm;
 
-	//tester tester_h;
-	coverage coverage_h;
+	axi4_tester tester_h;
+	axi4_Coverage coverage_h;
 	//scoreboard scoreboard_h;
 
 	function new (virtual axi4_lite_bfm b)
@@ -13,7 +13,7 @@ class testbench;
 	endfunction : new
 
 	task execute();
-		//tester_h = new(bfm);
+		tester_h = new(bfm);
 		coverage_h = new(bfm);
 		//scoreboard_h = new(bfm);
 
@@ -23,4 +23,5 @@ class testbench;
 			//scoreboard_h.execute();
 		join_none
 	endtask : execute
+	
 endclass : testbench
