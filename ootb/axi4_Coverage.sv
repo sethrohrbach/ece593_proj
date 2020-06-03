@@ -11,6 +11,9 @@
 ////////////////////////////////////////////////////////////////
 
 
+import axi4_lite_Defs::*;
+
+
 class axi4_Coverage;
 
 
@@ -19,7 +22,7 @@ covergroup cg_Read_Address();
    		bins ARVALID_High = {1};
    		bins ARVALID_Low = {0};
    	}
-	
+
 	Read_Address_Ready: coverpoint ARREADY iff (ARESETN) {
    	   	bins ARREADY_High = {1};
    		bins ARREADY_Low = {0};
@@ -29,7 +32,7 @@ covergroup cg_Read_Address();
    		bins ARADDR_First_Location = {0};
    		wildcard bins ARADDR_Last_Location = {32'b????_????_????_????_????_1111_1111_1111};
    	   	wildcard bins ARADDR_range[] = {[32'b1:32'b????_????_????_????_????_1111_1111_1110]};
-   	}   	
+   	}
 endgroup : cg_Read_Address
 
 
@@ -38,7 +41,7 @@ covergroup cg_Read_Data();
 		bins RVALID_High = {1};
    		bins RVALID_Low = {0};
    	}
-	
+
 	Read_Data_Ready: coverpoint RREADY iff (ARESETN) {
    		bins RREADY_High = {1};
    		bins RREADY_Low = {0};
@@ -48,7 +51,7 @@ covergroup cg_Read_Data();
    	   	bins RDATA_All_Zeros = {0};
    		bins RDATA_All_Ones = {32'b1111_1111_1111_1111_1111_1111_1111_1111};
    	   	bins RDATA_range[] = {[32'b1:32'b1111_1111_1111_1111_1111_1111_1111_1110]};
-   	}   	
+   	}
 endgroup : cg_Read_Data
 
 
@@ -57,7 +60,7 @@ covergroup cg_Write_Address();
 	  	bins AWVALID_High = {1};
    		bins AWVALID_Low = {0};
    	}
-	
+
 	Write_Address_Ready: coverpoint AWREADY iff (ARESETN) {
    	  	bins AWREADY_High = {1};
    		bins AWREADY_Low = {0};
@@ -76,7 +79,7 @@ covergroup cg_Write_Data();
    		bins WVALID_High = {1};
    		bins WVALID_Low = {0};
    	}
-	
+
 	Write_Data_Ready: coverpoint WREADY iff (ARESETN) {
    		bins WREADY_High = {1};
    		bins WREADY_Low = {0};
@@ -95,11 +98,11 @@ covergroup cg_Write_Response();
    		bins BVALID_High = {1};
    		bins BVALID_Low = {0};
    	}
-	
+
 	Write_Response_Ready: coverpoint BREADY iff (ARESETN) {
    		bins BREADY_High = {1};
    		bins BREADY_Low = {0};
-   	}   	
+   	}
 endgroup : cg_Write_Response
 
 
@@ -108,7 +111,7 @@ covergroup cg_CPU_Signals();
    		bins rd_en_High = {1};
    		bins rd_en_Low = {0};
    	}
-	
+
 	CPU_Write_Enable: coverpoint wr_en {
    		bins wr_en_High = {1};
    		bins wr_en_Low = {0};
@@ -183,14 +186,14 @@ covergroup cg_Slave_FSM();
    		bins sw2 = (ADDR => DATA);
    		bins sw3 = (DATA => RESP);
    		bins sw4 = (RESP => IDLE);
-   		bins sw_sequence = (IDLE => ADDR => DATA => RESP => IDLE);   		
+   		bins sw_sequence = (IDLE => ADDR => DATA => RESP => IDLE);
    		illegal_bins sw_illegal1 = (DATA => ADDR);
    	   	illegal_bins sw_illegal2 = (RESP => DATA);
    	  	illegal_bins sw_illegal3 = (RESP => ADDR);
    	   	illegal_bins sw_illegal4 = (IDLE => DATA);
    	   	illegal_bins sw_illegal5 = (IDLE => RESP);
    	   	illegal_bins sw_illegal6 = (ADDR => RESP);
-   	}   	
+   	}
 endgroup : cg_Slave_FSM
 
 covergroup cg_Reset_Signal();
@@ -199,7 +202,7 @@ covergroup cg_Reset_Signal();
    		bins ARVALID_Low_Reset = {0};
    		illegal_bins ARVALID_High_Reset_illegal = {1};
    	}
-	
+
 	Read_Address_Ready_Reset: coverpoint ARREADY iff (!ARESETN) {
    		bins ARREADY_Low_Reset = {0};
    	   	illegal_bins ARREADY_High_Reset_illegal = {1};
@@ -209,7 +212,7 @@ covergroup cg_Reset_Signal();
    		bins RVALID_Low_Reset = {0};
 		illegal_bins RVALID_High_Reset_illegal = {1};
    	}
-	
+
 	Read_Data_Ready_Reset: coverpoint RREADY iff (!ARESETN) {
    		bins RREADY_Low_Reset = {0};
    		illegal_bins RREADY_High_Reset_illegal = {1};
@@ -219,7 +222,7 @@ covergroup cg_Reset_Signal();
    		bins AWVALID_Low_Reset = {0};
 	  	illegal_bins AWVALID_High_Reset_illegal = {1};
    	}
-	
+
 	Write_Address_Ready_Reset: coverpoint AWREADY iff (!ARESETN) {
    		bins AWREADY_Low_Reset = {0};
    	  	illegal_bins AWREADY_High_Reset_illegal = {1};
@@ -229,7 +232,7 @@ covergroup cg_Reset_Signal();
    		bins WVALID_Low_Reset = {0};
    		illegal_bins WVALID_High_Reset_illegal = {1};
    	}
-	
+
 	Write_Data_Ready_Reset: coverpoint WREADY iff (!ARESETN) {
    		bins WREADY_Low_Reset = {0};
    		illegal_bins WREADY_High_Reset_illegal = {1};
@@ -239,7 +242,7 @@ covergroup cg_Reset_Signal();
    		bins BVALID_Low_Reset = {0};
    		illegal_bins BVALID_High_Reset_illegal = {1};
    	}
-	
+
 	Write_Response_Ready_Reset: coverpoint BREADY iff (!ARESETN) {
    		bins BREADY_Low_Reset = {0};
    		illegal_bins BREADY_High_Reset_illegal = {1};
@@ -304,7 +307,7 @@ covergroup cg_Reset_Signal();
    	   	illegal_bins sw_illegal7 = (IDLE => DATA);
    	   	illegal_bins sw_illegal8 = (IDLE => RESP);
    	   	illegal_bins sw_illegal9 = (ADDR => RESP);
-   	}   
+   	}
 
 endgroup : cg_Reset_Signal
 

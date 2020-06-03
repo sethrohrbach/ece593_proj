@@ -2,7 +2,8 @@
 // axi4_lite_if.sv - Interface for AXI4 Lite Bus
 //
 // Author: Preetha Selvaraju (preet3@pdx.edu)
-// Date: 18-Mar-2020
+// Modified by: Surakshith Reddy Mothe
+// Date: May 29, 2020
 //
 // Description:
 // ------------
@@ -13,8 +14,8 @@
 import axi4_lite_Defs::*;
 
 interface axi4_lite_bfm(
-                        input logic ACLK,       // System clock 
-                        input logic ARESETN     // System reset, active low 
+                        input logic ACLK,       // System clock
+                        input logic ARESETN     // System reset, active low
                       );
 
 // declare the signals in Read Address Channel
@@ -28,14 +29,14 @@ logic ARREADY;                   // Read Address Ready, slave generates this sig
 
 //declare the signals in Read Data Channel
 
-logic [Data_Width-1:0] RDATA;    // Read Data 
+logic [Data_Width-1:0] RDATA;    // Read Data
 
-logic RVALID;                    // Read valid, slave generate this signal when read data is valid 
+logic RVALID;                    // Read valid, slave generate this signal when read data is valid
 
 logic RREADY;                    // Read Ready, master generates this signal when it can accept read data
 
 
-// declare the signals in Write Address Channel 
+// declare the signals in Write Address Channel
 
  logic [Addr_Width-1:0] AWADDR;  // Write Address
 
@@ -46,21 +47,21 @@ logic RREADY;                    // Read Ready, master generates this signal whe
 
 // declare the signals in Write Data Channel
 
-logic [Data_Width-1:0] WDATA;     // Write Data 
+logic [Data_Width-1:0] WDATA;     // Write Data
 
 logic WVALID;                     // Write Valid, master generates this signal when write data is valid
 
 logic WREADY;                     // Write ready, slave generates this signal when it can accept write data
 
 
-// declare the signals in Write Response Channel 
+// declare the signals in Write Response Channel
 
 logic BVALID;                     // Write Response valid, slave generates this signal when write response on bus is valid.
 
-logic BREADY;                     // Write Response Ready, master generates this signal when it can accept write response 
+logic BREADY;                     // Write Response Ready, master generates this signal when it can accept write response
 
 
-// declare the modport for master interface 
+// declare the modport for master interface
 
 modport master_if (
 
@@ -92,9 +93,9 @@ output WDATA,
 
 output BREADY,
 
-output WVALID,                     
+output WVALID,
 
-input WREADY 
+input WREADY
 
 );
 
@@ -132,7 +133,7 @@ input ACLK,
 
 input ARESETN,
 
- input WVALID,                     
+ input WVALID,
 
 output WREADY
 
