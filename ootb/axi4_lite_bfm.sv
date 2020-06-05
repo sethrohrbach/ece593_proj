@@ -141,4 +141,4 @@ output WREADY
 
 
 
-endinterface: axi4_lite_if
+endinterface: axi4_lite_bfm

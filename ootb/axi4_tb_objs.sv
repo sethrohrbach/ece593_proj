@@ -15,16 +15,12 @@ import axi4_lite_Defs::*;
 class axi4_tester;
 
   //Hook the tester up with the AXI4:
-  virtual axi4_bfm bfm;
+  virtual axi4_lite_bfm bfm;
 
   //To store values for comparison:
   logic [Data_Width-1:0] local_mem[4096];
 
   int i;
-  //Set memory to 0 to start...
-  for (i = 0; i < 4096; i++) begin
-    local_mem[i] = 0;
-  end
 
 
   //TB local vars:
@@ -32,8 +28,11 @@ class axi4_tester;
   bit rd_en = 0;
   bit clk = 0;
 
-  function new (virtual axi_bfm b);
+  function new (virtual axi4_lite_bfm b);
     bfm = b;
+    for (i = 0; i < 4096; i++) begin
+      local_mem[i] = 0;
+    end
   endfunction: new
 
 //Generate a random address:
@@ -50,11 +49,11 @@ class axi4_tester;
 
   //Write a value out to the light bus and also to local mem.
   protected task rand_write_op();
-  @(posedge clk);
+  //@(posedge clk);
   logic [Addr_Width-1:0] Write_Address = gen_addr();
   logic [Data_Width-1:0] Write_Data = gen_data();
   bfm.WVALID = 1;
-  bfm.AWVALID = 1
+  bfm.AWVALID = 1;
   bfm.AWADDR = Write_Address;
   bfm.WDATA = Write_Data;
   repeat(5) @(posedge clk);
@@ -63,19 +62,21 @@ class axi4_tester;
   endtask: rand_write_op
 
   protected task rand_read_op();
-  @(posedge clk);
+  //@(posedge clk);
   logic [Addr_Width-1:0] Read_Address = gen_addr();
 
   bfm.ARVALID = 1;
-  local_mem[Read_Address] = bfm.RDATA[Read_Address];
+  local_mem[Read_Address] = bfm.RDATA;
   repeat(5) @(posedge clk);
   bfm.ARVALID = 0;
   endtask : rand_read_op
 
   //Let there be clock!
+  /*
   initial begin
     forever #(10 / 2) clk = ~clk;
   end
+  */
 
   protected task execute();
   int i = 0;
@@ -86,9 +87,12 @@ class axi4_tester;
     rand_read_op();
     join
   end
+endtask : execute
+
 endclass: axi4_tester
 
 
+/*
 // Randomization class that is derieved from axi4_tester class
 class Randomization extends axi4_tester;
 
@@ -328,6 +332,8 @@ endtask : execute
     temp_en = wr_en;
 	end : post_rand
   endfunction : post_randomize();
-*/
+
 
 endclass : Randomization
+
+*/

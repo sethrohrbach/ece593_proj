@@ -15,27 +15,26 @@ import axi4_lite_Defs::*;
 
 class axi4_checker;
 
-  virtual axi4_bfm bfm;
+  virtual axi4_lite_bfm bfm;
 
   int score = 0;
 
   //To store values for comparison:
   logic [Data_Width-1:0] local_mem[4096];
-
   int i;
-  //Set memory to 0 to start...
-  for (i = 0; i < 4096; i++) begin
-    local_mem[i] = 0;
-  end
 
-  //Instantiate the BFM when we create the object.
-  function new (virtual axi_bfm b);
+
+//Instantiate BFM, wipe local mem.
+  function new (virtual axi4_lite_bfm b);
     bfm = b;
+    for (i = 0; i < 4096; i++) begin
+      local_mem[i] = 0;
+    end
   endfunction: new
 
   //Read the write data line and store the value to local memory.
   protected task save_val();
-  @(posedge clk);
+  @(posedge bfm.ACLK);
   //If the WRITE ADDR value is true, we can store the value to local mem.
   if (bfm.AWVALID) begin
     local_mem[bfm.AWADDR] = bfm.WDATA; //So it goes.
@@ -45,25 +44,29 @@ class axi4_checker;
 
   //Read the read value line and check local memory to confirm
   protected task check_val();
-  @(posedge clk);
+  @(posedge bfm.ACLK);
   //If the RVALID is true, then a valid read op is in progress so we can compare.
   if (bfm.RVALID) begin
     //So we just compare it to local mem.
-    if (!(bfm.RDATA == local_mem[ARADDR])) begin
+    if (!(bfm.RDATA == local_mem[bfm.ARADDR])) begin
       score = score + 1;
     end
   end
+endtask : check_val
 
   protected task execute();
   int k = 0;
   for (k = 0; k < 4096; k++) begin
-    @(posedge clk);
+    @(posedge bfm.ACLK);
     fork
     save_val();
     check_val();
     join
+    if (k == 4095) begin
+      $display("SCORE IS: %d\n", score);
+    end
   end
 
-  endtask: check_val
+endtask: execute
 
 endclass: axi4_checker
