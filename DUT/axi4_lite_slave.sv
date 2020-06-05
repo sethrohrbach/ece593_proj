@@ -7,7 +7,7 @@
 // Description:
 // ------------
 // Contains a slave module which is driven by the master for the read and write operations.
-// Implemented two FSMs for read and write operation and each one has four states to 
+// Implemented two FSMs for read and write operation and each one has four states to
 // traverse through the sequence of steps to complete the transaction.
 //////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -16,7 +16,7 @@ import axi4_lite_Defs::*;
 
 
 module axi4_lite_slave(
-        axi4_lite_if.slave_if   S                                                    // interface as a slave
+        axi4_lite_bfm.slave_if   S                                                    // interface as a slave
 	 );
 
 
@@ -28,14 +28,14 @@ state current_state_read, next_state_read, current_state_write, next_state_write
 logic [Data_Width-1:0] readdata, writedata;                                          // read data and write data variables
 
 // declare a memory array of size 4096
-integer mem[4096];                                                                   // memory of 4096 locations each of 32 bit wide                     
+integer mem[4096];                                                                   // memory of 4096 locations each of 32 bit wide
 
 
 //read from memory
-always_comb 
+always_comb
 begin
 	if(S.ARVALID == 1'b1)                // when ARVALID is asserted by slave, assign the data in ARADDR location of the memory to readdata variable which will be later given to master
-        readdata = mem[S.ARADDR];                                  		
+        readdata = mem[S.ARADDR];
 end
 
 // write data into memory
@@ -61,7 +61,7 @@ always_ff@(posedge S.ACLK, negedge S.ARESETN)
 begin
 	if(S.ARESETN == 0)                                  // active low reset
         	current_state_read <= IDLE;                 // go to IDLE state
- 	else 
+ 	else
 		current_state_read <= next_state_read;      // else go to next state
 end   // state register for read operation
 
@@ -104,14 +104,14 @@ begin
 			S.RVALID = 1'b0;                     // deassert RVALID indicating that data has been transferred from slave to master and go to IDLE state
 			next_state_read = IDLE;
 		end
-	
-	endcase 
+
+	endcase
 
 end   // next state and output logic for read operation
 
 
 
-//////////////////////////FSM to implement write operation/////////////////////////////////// 
+//////////////////////////FSM to implement write operation///////////////////////////////////
 
 
 // state register for write operation
@@ -119,21 +119,21 @@ always_ff@(posedge S.ACLK, negedge S.ARESETN)
 begin
 	if(S.ARESETN == 0)                                   // active reset low
 		current_state_write <= IDLE;                 // go to IDLE state
-	else 
+	else
 		current_state_write <= next_state_write;     // else go to next state
 end    // state register for write operation
 
 
 // next state and output logic for write operation
-always_comb 
+always_comb
 begin
 
 	unique case(current_state_write)
-	
+
 	IDLE:	begin	                                      // initialize the signals of the write channels to zero
 			S.AWREADY = 1'b0;
 			S.WREADY  = 1'b0;
-			S.BVALID  = 1'b0;	
+			S.BVALID  = 1'b0;
 			if (S.AWVALID && S.WVALID)            // when AWVALID and WVALID are asserted by the master, then go to ADDR state else stay in IDLE state
 				next_state_write = ADDR;
 			else
@@ -144,8 +144,8 @@ begin
 	ADDR:	begin
 			S.AWREADY = 1'b1;                     // assert AWREADY to indicate that slave is ready to receive the write address(AWADDR) from master
 			S.WREADY  = 1'b1;                     // assert WREADY to indicate that slave is ready to receive that write data(WDATA)
-			writedata = S.WDATA;                  // assign the write data received from master to the write data internal variable and go to DATA state 
-			next_state_write = DATA;                
+			writedata = S.WDATA;                  // assign the write data received from master to the write data internal variable and go to DATA state
+			next_state_write = DATA;
 		end
 
 	DATA:	begin
@@ -164,10 +164,8 @@ begin
 			next_state_write = IDLE;
 		end
 
-	endcase 
+	endcase
 
 end   // next state and output logic for write operation
 
 endmodule: axi4_lite_slave
-
-

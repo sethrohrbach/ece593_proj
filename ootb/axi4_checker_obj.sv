@@ -54,7 +54,7 @@ class axi4_checker;
   end
 endtask : check_val
 
-  protected task execute();
+  task execute();
   int k = 0;
   for (k = 0; k < 4096; k++) begin
     @(posedge bfm.ACLK);

@@ -7,7 +7,7 @@
 // Description:
 // ------------
 // Contains a master module which initiates the read and write operations.
-// Implemented two FSMs for read and write operation and each one has four 
+// Implemented two FSMs for read and write operation and each one has four
 // states to traverse through the sequence of steps to complete the transaction.
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -18,10 +18,10 @@ module axi4_lite_master(
 
 input logic rd_en,                                   // read enable signal
 input logic wr_en,                                   // write enable signal
-input logic [Addr_Width-1:0] Read_Address,           // input read address 
-input logic [Addr_Width-1:0] Write_Address,          // input write address 
-input logic [Data_Width-1:0] Write_Data,             // input write data 
-axi4_lite_if.master_if M                             // interface as a master
+input logic [Addr_Width-1:0] Read_Address,           // input read address
+input logic [Addr_Width-1:0] Write_Address,          // input write address
+input logic [Data_Width-1:0] Write_Data,             // input write data
+axi4_lite_bfm.master_if M                             // interface as a master
 );
 
 
@@ -39,7 +39,7 @@ state current_state_read, next_state_read, current_state_write, next_state_write
 // state register for read operation
 always_ff@ (posedge M.ACLK, negedge M.ARESETN)
 begin
-	if(M.ARESETN == 0)                                           // active low reset 
+	if(M.ARESETN == 0)                                           // active low reset
 		current_state_read <= IDLE;	                     // go to IDLE state
 	else
 		current_state_read <= next_state_read;               // else go to next state
@@ -50,28 +50,28 @@ always_comb
 begin
 	unique case(current_state_read)
 
-	IDLE:	begin                                                 // initialize the signals of the read channels to zero 
-			M.RREADY  = 1'b0;                      
-			M.ARVALID = 1'b0;                                  
+	IDLE:	begin                                                 // initialize the signals of the read channels to zero
+			M.RREADY  = 1'b0;
+			M.ARVALID = 1'b0;
 			if(rd_en)                                     // when read enable is asserted, go to ADDR state if there is a new input address else stay in IDLE state
 			begin
-				if (Read_Address == M.ARADDR) 
+				if (Read_Address == M.ARADDR)
 				begin
 					next_state_read = IDLE;
 				end
-				else 
+				else
 				begin
 					next_state_read = ADDR;
 				end
 			end
-			else 
+			else
 			begin
 				next_state_read = IDLE;
 			end
 		end
 
 
-	ADDR: 	begin                                                       
+	ADDR: 	begin
 			M.ARADDR  = Read_Address;                    // assign the input address to the read address(ARADDR) signal of the read address channel
 			M.ARVALID = 1'b1;                            // assert ARVALID to indicate that ARADDR is valid
 			M.RREADY  = 1'b1;                            // assert RREADY to indicate that master is ready to receive the data from slave
@@ -83,7 +83,7 @@ begin
 
 
 	DATA:	begin
-			M.ARVALID = 1'b0;                            // deassert ARVALID indicating that address has been transferred from master to slave 
+			M.ARVALID = 1'b0;                            // deassert ARVALID indicating that address has been transferred from master to slave
 			if(M.RVALID)                                 // when RVALID is asserted by slave, then go to RESP state else stay in the same state
 				next_state_read = RESP;
 			else
@@ -102,7 +102,7 @@ end    // next state and output logic for read operation
 
 
 
-//////////////////////////FSM to implement write operation/////////////////////////////////// 
+//////////////////////////FSM to implement write operation///////////////////////////////////
 
 // state register for write operation
 always_ff@(posedge M.ACLK, negedge M.ARESETN)
@@ -125,25 +125,25 @@ begin
 			M.BREADY  = 1'b0;
 			if(wr_en)                                    // when write enable is asserted, go to ADDR state if there is a new input address and data else stay in IDLE state
 			begin
-				if (Write_Address == M.AWADDR && Write_Data == M.WDATA) 
+				if (Write_Address == M.AWADDR && Write_Data == M.WDATA)
 				begin
 					next_state_write = IDLE;
 				end
-				else 
-				begin 
+				else
+				begin
 					next_state_write = ADDR;
 				end
 			end
-			else 
+			else
 			begin
 				next_state_write = IDLE;
 			end
 		end
-		
+
 
 	ADDR: 	begin
 
-			M.AWADDR  = Write_Address;                  // assign the input write address to the write address(AWADDR) signal of the write address channel 
+			M.AWADDR  = Write_Address;                  // assign the input write address to the write address(AWADDR) signal of the write address channel
 			M.AWVALID = 1'b1;                           // asssert AWVALID to indicate that AWADDR is valid
 			M.WDATA   = Write_Data;                     // assign the input write data to the write data(WDATA) signal of the write data channel
 			M.WVALID  = 1'b1;                           // assert WVALID to indicate that WDATA is valid
@@ -154,11 +154,11 @@ begin
 				next_state_write = ADDR;
 		end
 
-		
+
 
 	DATA:	begin
 			M.AWVALID = 1'b0;                            // deassert AWVALID indicating that address has been transferred from master to slave
-			M.WVALID  = 1'b0;                            // deassert WVALID indicating that data has been transferred from master to slave 
+			M.WVALID  = 1'b0;                            // deassert WVALID indicating that data has been transferred from master to slave
 			if(M.BVALID)                                 // when BVALID is asserted by the slave, then go to RESP state else stay in DATA state
 				next_state_write = RESP;
 			else
@@ -176,4 +176,3 @@ end    // next state and output logic for write operation
 
 
 endmodule: axi4_lite_master
-

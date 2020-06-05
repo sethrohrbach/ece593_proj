@@ -78,7 +78,7 @@ class axi4_tester;
   end
   */
 
-  protected task execute();
+  task execute();
   int i = 0;
   for (i = 0; i < 4096; i++) begin
     @(posedge clk);

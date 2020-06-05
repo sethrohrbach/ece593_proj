@@ -11,16 +11,17 @@
 
 package axi4_lite_Defs;
 
+  parameter
+
+      Addr_Width = 32,                  // Address width of the bus
+
+      Data_Width = 32;                  // Data width of the bus
+
+
   //Includes with the objects:
   `include "axi4_tb_objs.sv"
-  `include "axi4_Coverage.sv"
+//  `include "axi4_Coverage.sv"
   `include "axi4_checker_obj.sv"
   `include "axi4_env.sv"
-
-parameter
-
-    Addr_Width = 32,                  // Address width of the bus
-
-    Data_Width = 32;                  // Data width of the bus
 
 endpackage: axi4_lite_Defs

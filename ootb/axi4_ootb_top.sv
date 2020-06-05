@@ -12,26 +12,48 @@
 
 //Packages and includes:
 import axi4_lite_Defs::*;
-`include "axi4_tb_objs.sv"
-`include "axi4_Coverage.sv"
-`include "axi4_checker_obj.sv"
 `include "axi4_env.sv"
 
 
-module OOTB_TOP;
+module a_OOTB_TOP;
 
   //Local vars:
   bit clk;
   bit rst_N;
 
+
+  // declare the internal variables                                // system reset, active low
+  logic rd_en, wr_en;                                   // read and write enable
+  logic [Addr_Width-1:0] Read_Address, Write_Address;   // read and write address variables
+  logic [Data_Width-1:0] Write_Data;                    // write data variable
+  logic [31:0] i;                                       // loop variable
+
+
+  //Instantiate the BFM:
+  axi4_lite_bfm bfm(.ACLK(clk), .ARESETN(rst_N));
+
+  // instantiate the master module
+  axi4_lite_master MP(
+  		.rd_en(rd_en),
+  		.wr_en(wr_en),
+  		.Read_Address(Read_Address),
+  		.Write_Address(Write_Address),
+  		.Write_Data(Write_Data),
+  		.M(bfm.master_if)
+  );
+
+
+  // instantiate the slave module
+  axi4_lite_slave SP(
+          .S(bfm.slave_if)
+          );
+
   //Object handles:
   axi4_environment env_h;
 
-  //Instantiate the BFM:
-  axi4_lite_bfm bfm(.ACLK(clk), .ARSETN(rst_N));
 
   //Instantiate the DUT master and slave:
-  
+
 
   //Start the clock:
   initial begin
@@ -45,7 +67,7 @@ module OOTB_TOP;
     rst_N = 0;
     #20 rst_N = 1;
 
-    env_h = new(bfm)
+    env_h = new(bfm);
 
     env_h.execute();
 
@@ -58,4 +80,4 @@ module OOTB_TOP;
 
 
 
-endmodule : OOTB_TOP
+endmodule : a_OOTB_TOP
