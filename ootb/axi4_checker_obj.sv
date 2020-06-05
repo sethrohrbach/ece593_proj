@@ -34,16 +34,20 @@ class axi4_checker;
 
   //Read the write data line and store the value to local memory.
   protected task save_val();
+  begin
   @(posedge bfm.ACLK);
   //If the WRITE ADDR value is true, we can store the value to local mem.
   if (bfm.AWVALID) begin
     local_mem[bfm.AWADDR] = bfm.WDATA; //So it goes.
+    $display("CHECKING ADDR %d, FINDING VALUE %d\n", bfm.AWADDR, bfm.WDATA);
+  end
   end
 
   endtask: save_val
 
   //Read the read value line and check local memory to confirm
   protected task check_val();
+  begin
   @(posedge bfm.ACLK);
   //If the RVALID is true, then a valid read op is in progress so we can compare.
   if (bfm.RVALID) begin
@@ -52,6 +56,7 @@ class axi4_checker;
       score = score + 1;
     end
   end
+end
 endtask : check_val
 
   task execute();

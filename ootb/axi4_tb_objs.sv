@@ -24,9 +24,6 @@ class axi4_tester;
 
 
   //TB local vars:
-  bit wr_en = 0;
-  bit rd_en = 0;
-  bit clk = 0;
 
   function new (virtual axi4_lite_bfm b);
     bfm = b;
@@ -36,52 +33,58 @@ class axi4_tester;
   endfunction: new
 
 //Generate a random address:
-  protected function logic gen_addr();
+  protected function logic [Addr_Width-1:0] gen_addr();
   logic [Addr_Width-1:0] addr = $random;
   return addr;
   endfunction : gen_addr
 
 //Generate a random write value:
-  protected function logic gen_data();
+  protected function logic [Data_Width-1:0] gen_data();
   logic [Data_Width-1:0] data = $random;
   return data;
   endfunction : gen_data
 
   //Write a value out to the light bus and also to local mem.
   protected task rand_write_op();
-  //@(posedge clk);
+
   logic [Addr_Width-1:0] Write_Address = gen_addr();
   logic [Data_Width-1:0] Write_Data = gen_data();
+
+  begin
+  @(posedge bfm.ACLK);
   bfm.WVALID = 1;
   bfm.AWVALID = 1;
   bfm.AWADDR = Write_Address;
   bfm.WDATA = Write_Data;
-  repeat(5) @(posedge clk);
+  $display("WRITING %d TO %d", Write_Data, Write_Address);
+  end
+  repeat(5) @(posedge bfm.ACLK)
+  begin
   bfm.WVALID = 0;
   bfm.AWVALID = 0;
+  end
   endtask: rand_write_op
 
   protected task rand_read_op();
-  //@(posedge clk);
-  logic [Addr_Width-1:0] Read_Address = gen_addr();
 
+  logic [Addr_Width-1:0] Read_Address = gen_addr();
+  begin
+  @(posedge bfm.ACLK)
   bfm.ARVALID = 1;
   local_mem[Read_Address] = bfm.RDATA;
-  repeat(5) @(posedge clk);
+  end
+  begin
+  repeat(5) @(posedge bfm.ACLK)
   bfm.ARVALID = 0;
+  end
   endtask : rand_read_op
 
-  //Let there be clock!
-  /*
-  initial begin
-    forever #(10 / 2) clk = ~clk;
-  end
-  */
+
 
   task execute();
   int i = 0;
   for (i = 0; i < 4096; i++) begin
-    @(posedge clk);
+    @(posedge bfm.ACLK)
     fork
     rand_write_op();
     rand_read_op();

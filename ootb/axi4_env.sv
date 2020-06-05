@@ -13,11 +13,7 @@
 
 
 import axi4_lite_Defs::*;
-/*
-`include "axi4_tb_objs.sv"
-`include "axi4_Coverage.sv"
-`include "axi4_checker_obj.sv"
-*/
+
 
 class axi4_environment;
 

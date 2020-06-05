@@ -70,7 +70,7 @@ module a_OOTB_TOP;
     env_h = new(bfm);
 
     env_h.execute();
-
+    #10000
     $display("Testing finished!");
 
   end
