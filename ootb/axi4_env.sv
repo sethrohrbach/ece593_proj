@@ -11,7 +11,7 @@
 
 
 
-
+`include "axi4_tb_objs.sv"
 import axi4_lite_Defs::*;
 
 
@@ -34,7 +34,7 @@ class axi4_environment;
 
 		fork
 			tester_h.execute();
-		//	coverage_h.execute();
+			//coverage_h.execute();
 			checker_h.execute();
 		join_none
 	endtask : execute

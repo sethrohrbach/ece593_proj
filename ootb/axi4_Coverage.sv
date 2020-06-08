@@ -12,8 +12,7 @@
 
 
 // Including Master and Slave design files
-`include "axi4_lite_master.sv"
-`include "axi4_lite_slave.sv"
+
 
 
 // import the global definitions of AXI4 Lite bus

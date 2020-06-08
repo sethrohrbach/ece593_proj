@@ -19,9 +19,9 @@ package axi4_lite_Defs;
 
 
   //Includes with the objects:
-  `include "axi4_tb_objs.sv"
-//  `include "axi4_Coverage.sv"
+  //`include "axi4_tb_objs.sv"
+  //`include "axi4_Coverage.sv"
   `include "axi4_checker_obj.sv"
-  `include "axi4_env.sv"
+  //`include "axi4_env.sv"
 
 endpackage: axi4_lite_Defs
