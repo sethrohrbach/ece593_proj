@@ -90,12 +90,14 @@ class axi4_tester;
   begin
   @(posedge bfm.ACLK)
   bfm.ARVALID = 1;
+  bfm.RREADY = 1;
   bfm.ARADDR = Read_Address;
   local_mem[Read_Address] = bfm.RDATA;
   end
   begin
   repeat(5) @(posedge bfm.ACLK)
   bfm.ARVALID = 0;
+  bfm.RREADY = 0;
   end
   endtask : rand_read_op
 
