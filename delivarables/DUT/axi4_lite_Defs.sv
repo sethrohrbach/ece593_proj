@@ -18,11 +18,11 @@ package axi4_lite_Defs;
       Data_Width = 32;                  // Data width of the bus
 
 typedef enum logic [1:0] {IDLE, ADDR, DATA, RESP} state;                                // four states for read and write operation
-  
+
 //Includes with the objects:
-  `include "axi4_tb_objs.sv"
+  `include "../TB/axi4_tb_objs.sv"
   //`include "axi4_Coverage.sv"
-  `include "axi4_checker_obj.sv"
+  `include "../TB/axi4_checker_obj.sv"
   //`include "axi4_env.sv"
 
 endpackage: axi4_lite_Defs

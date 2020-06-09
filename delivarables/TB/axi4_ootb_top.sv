@@ -12,7 +12,7 @@
 
 //Packages and includes:
 import axi4_lite_Defs::*;
-`include "axi4_env.sv"
+`include "TB/axi4_env.sv"
 //`include "axi4_Coverage.sv"
 
 module a_OOTB_TOP;
@@ -68,7 +68,7 @@ module a_OOTB_TOP;
     #20 rst_N = 1;
 
     env_h = new(bfm);
-    
+
     env_h.execute();
     #10000
     $display("Testing finished!");

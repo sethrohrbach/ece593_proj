@@ -11,7 +11,7 @@
 
 
 
-`include "axi4_Coverage.sv"
+`include "TB/axi4_Coverage.sv"
 import axi4_lite_Defs::*;
 
 
